@@ -19,12 +19,62 @@
 	</script>
 	<body>
 		<div class="main">
-			<button>Clique</button>
+			<button id="button">Clique</button>
 		</div>
 	</body>
+
+	<script>
+		const button = document.getElementById("button")
+		button.addEventListener("click", () => {
+			// show a message in random position
+			const x = Math.floor(Math.random() * window.innerWidth)
+			const y = Math.floor(Math.random() * window.innerHeight)
+
+			const message = document.createElement("div")
+			message.style.position = "absolute"
+			message.style.left = `${x}px`
+			message.style.top = `${y}px`
+			message.style.fontSize = "20px"
+			message.innerHTML = getRandomMessage()
+
+			document.body.appendChild(message)
+
+			// remove message after 2 seconds
+			setTimeout(() => {
+				message.remove()
+			}, 2000)
+		})
+
+		function getRandomMessage() {
+			const messages = [
+				"Aquele que não tem coragem de arriscar, não conquista nada.",
+				"A vida é uma aventura, corra o risco.",
+				"O que você faz hoje, determina o que você será amanhã.",
+				"Deus não dá a ninguém um sonho sem também dar a ele a força para realizá-lo.",
+				"Você não pode controlar o vento, mas pode ajustar as velas.",
+				"Bons sonhos são o combustível da vida.",
+				"Tudo o que você pode imaginar é real.",
+				"Realize o impossível, tente o possível e encare o desafiador.",
+				"Quando você quer alguma coisa, todo o universo conspira para que você realize seu desejo.",
+				"Pare de perseguir o dinheiro e comece a perseguir o sucesso.",
+				"Ganhar é importante para mim, mas o que traz satisfação é o desafio da competição.",
+				"Não importa o quão lento você vá, você ainda está correndo mais rápido do que aqueles que estão sentados no sofá.",
+				"Dê o primeiro passo na direção dos seus sonhos. O resto virá naturalmente.",
+				"Lute para viver o seu sonho, não para viver a vida dos outros.",
+				"Se você não está disposto a arriscar, esteja disposto a uma vida comum.",
+			]
+
+			const index = Math.floor(Math.random() * messages.length)
+			return messages[index]
+		}
+	</script>
 </html>
 
 <style>
+	* {
+		font-family: Arial, Helvetica, sans-serif;
+	}
+
 	.main {
 		display: flex;
 		justify-content: center;
